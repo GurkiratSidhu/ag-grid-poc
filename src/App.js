@@ -11,6 +11,12 @@ class GridExample extends Component {
 	constructor(props) {
 		super(props);
 
+		function callingFormulaParser(params) {
+			var FormulaParser = require("hot-formula-parser").Parser;
+			var parser = new FormulaParser();
+			parser.parse("SUM(1+1)");
+		}
+
 		this.state = {
 			columnDefs: [
 				{
@@ -45,6 +51,7 @@ class GridExample extends Component {
 					field: "date",
 					width: 110,
 					editable: true,
+					filterParams: { valueFormatter: callingFormulaParser },
 				},
 				{
 					headerName: "Sport",
@@ -184,7 +191,7 @@ class App extends React.Component {
 			<div
 				className="ag-theme-balham"
 				style={{
-					height: "1080px",
+					height: "1200px",
 					width: "100%",
 				}}
 			>
